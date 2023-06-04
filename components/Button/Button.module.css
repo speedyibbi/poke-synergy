@@ -1,0 +1,40 @@
+.button {
+	--text-color: var(--tertiary);
+	--bg-color: var(--primary);
+	--x-offset: 0.2rem;
+	--y-offset: 0.25rem;
+	padding: 0.75rem 2.25rem;
+	position: relative;
+	color: var(--text-color);
+	font-size: 1.1rem;
+	font-weight: 600;
+	border: 3px solid transparent;
+	border-radius: 0.6rem;
+	background-color: var(--bg-color);
+	transition: var(--primary-transition);
+	filter: drop-shadow(5px 5px 30px rgba(0, 0, 0, 0.25));
+}
+
+.button::after {
+	content: '';
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: var(--y-offset);
+	left: var(--x-offset);
+	border: 2px solid var(--bg-color);
+	border-radius: 0.6rem;
+	transition: var(--primary-transition);
+}
+
+.button:hover {
+	transform: translate(var(--x-offset), var(--y-offset));
+	border-color: var(--bg-color);
+}
+
+.button:hover::after {
+	transform: translate(
+		calc(-1 * (var(--x-offset))),
+		calc(-1 * (var(--y-offset)))
+	);
+}
