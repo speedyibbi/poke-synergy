@@ -1,4 +1,5 @@
 import { Saira } from 'next/font/google';
+import WebGLCanvas from './WebGLCanvas';
 import Header from './Header';
 
 const saira = Saira({ subsets: ['latin'] });
@@ -12,6 +13,7 @@ const Layout: React.FC<Props> = (props) => {
 		<>
 			<Header />
 			<main className={`${saira.className}`}>{props.children}</main>
+			<WebGLCanvas />
 		</>
 	);
 };
