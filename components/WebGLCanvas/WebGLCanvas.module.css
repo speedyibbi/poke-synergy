@@ -1,8 +1,9 @@
 .webGLCanvas {
-	width: min(100%, 60rem);
+	width: min(100%, 600rem);
 	height: 100%;
 	position: absolute;
 	top: 0;
 	right: 0;
+	transition: var(--primary-transition);
 	z-index: -1;
 }

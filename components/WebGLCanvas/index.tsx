@@ -1,14 +1,23 @@
-import React, { useMemo, useRef } from 'react';
+import React, { useContext, useMemo, useRef } from 'react';
 import * as THREE from 'three';
 import { Canvas, useFrame, useLoader } from '@react-three/fiber';
+import { CanvasContext } from '@/store/CanvasContext';
 import styles from './WebGLCanvas.module.css';
 
 const Scene = () => {
+	const { canvasState } = useContext(CanvasContext);
+
 	const buffRef = useRef<any>();
 	const texture = useLoader(THREE.TextureLoader, '/particle.svg');
 
-	const pointCount = 5000;
 	const radius = 50;
+	const pointCount = 5000;
+	const rotationSpeed = 0.001;
+
+	let scale = useMemo(() => {
+		if (canvasState === 0) return 1;
+		if (canvasState === 1) return 3;
+	}, [canvasState]);
 
 	const positions = useMemo(() => {
 		const coordinates = [];
@@ -40,6 +49,8 @@ const Scene = () => {
 		return originalPositions[index + offset];
 	};
 
+	const particle = Math.floor(Math.random() * ((pointCount - 1) * 3 + 1));
+
 	useFrame((state) => {
 		const positionsAttribute =
 			buffRef.current.geometry.getAttribute('position');
@@ -55,14 +66,14 @@ const Scene = () => {
 			positionsAttribute.setXYZ(i, x * pulsate, y * pulsate, z * pulsate);
 		}
 
-		buffRef.current.rotation.y -= 0.001;
-		buffRef.current.rotation.z += 0.001;
+		buffRef.current.rotation.y -= rotationSpeed;
+		buffRef.current.rotation.z += rotationSpeed;
 
 		positionsAttribute.needsUpdate = true;
 	});
 
 	return (
-		<points ref={buffRef} position={[0, 0, 0]}>
+		<points ref={buffRef} position={[0, 0, 0]} scale={scale}>
 			<bufferGeometry attach='geometry'>
 				<bufferAttribute
 					attach='attributes-position'
@@ -71,7 +82,14 @@ const Scene = () => {
 					array={positions}
 				/>
 			</bufferGeometry>
-			<pointsMaterial attach='material' color='#FFF' size={0.5} map={texture} />
+			<pointsMaterial
+				attach='material'
+				color='#FFF'
+				size={0.25}
+				map={texture}
+				alphaTest={0.5}
+				opacity={1}
+			/>
 		</points>
 	);
 };
