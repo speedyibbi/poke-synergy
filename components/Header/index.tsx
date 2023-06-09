@@ -1,9 +1,6 @@
 import { useRouter } from 'next/router';
 import Image from 'next/image';
-import { Saira } from 'next/font/google';
 import styles from './Header.module.css';
-
-const saira = Saira({ subsets: ['latin'] });
 
 const Header = () => {
 	const router = useRouter();
@@ -13,13 +10,14 @@ const Header = () => {
 	};
 
 	return (
-		<header onClick={clickHandler} className={`${saira.className}`}>
+		<header>
 			<Image
 				src='/yveltal.png'
 				alt='logo'
 				width={140}
 				height={116}
 				className={`${styles.logo}`}
+				onClick={clickHandler}
 			/>
 		</header>
 	);

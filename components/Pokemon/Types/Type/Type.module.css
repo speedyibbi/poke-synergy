@@ -1,0 +1,94 @@
+.type {
+	--text-color: var(--primary);
+	margin: 0 0.25rem;
+	padding: 0.1rem 1rem 0.1rem 0.75rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: 2px solid var(--bg-color);
+	border-radius: 6.5rem;
+	background-color: var(--bg-color);
+}
+
+.icon {
+	margin-right: 0.5rem;
+}
+
+.text {
+	color: var(--text-color);
+	font-size: 1rem;
+	/* font-size: clamp(2.25rem, 10vw, 3rem); */
+	font-weight: 600;
+}
+
+.BUG {
+	--bg-color: #9dc130;
+}
+
+.DARK {
+	--bg-color: #5f606d;
+}
+
+.DRAGON {
+	--bg-color: #0773c7;
+}
+
+.ELECTRIC {
+	--bg-color: #edd53f;
+}
+
+.FAIRY {
+	--bg-color: #ef97e6;
+}
+
+.FIGHT {
+	--bg-color: #d94256;
+}
+
+.FIRE {
+	--bg-color: #f8a54f;
+}
+
+.FLYING {
+	--bg-color: #9bb4e8;
+}
+
+.GHOST {
+	--bg-color: #6970c5;
+}
+
+.GRASS {
+	--bg-color: #5dbe62;
+}
+
+.GROUND {
+	--bg-color: #d78555;
+}
+
+.ICE {
+	--bg-color: #7ed4c9;
+}
+
+.NORMAL {
+	--bg-color: #9a9da1;
+}
+
+.POISON {
+	--bg-color: #b563ce;
+}
+
+.PSYCHIC {
+	--bg-color: #f87c7a;
+}
+
+.ROCK {
+	--bg-color: #cec18c;
+}
+
+.STEEL {
+	--bg-color: #5596a4;
+}
+
+.WATER {
+	--bg-color: #559edf;
+}

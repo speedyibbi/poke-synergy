@@ -2,6 +2,16 @@
 const nextConfig = {
 	reactStrictMode: true,
 	transpilePackages: ['three'],
+	images: {
+		remotePatterns: [
+			{
+				protocol: 'https',
+				hostname: 'raw.githubusercontent.com',
+				port: '',
+				pathname: '/PokeAPI/sprites/master/sprites/pokemon/*.png',
+			},
+		],
+	},
 };
 
 module.exports = nextConfig;

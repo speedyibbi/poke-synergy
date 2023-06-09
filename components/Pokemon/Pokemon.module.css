@@ -1,0 +1,57 @@
+.listing {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.navigation {
+	width: 1.5rem;
+	margin: 2rem;
+	cursor: pointer;
+	transition: var(--primary-transition);
+}
+
+.navigation:hover {
+	filter: drop-shadow(0 0 0.1rem white);
+	scale: 1.25;
+}
+
+.prevPokemon {
+	transform: rotate(-90deg);
+}
+
+.nextPokemon {
+	transform: rotate(90deg);
+}
+
+.pokemon {
+	width: 20rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 1rem;
+}
+
+.image {
+	width: 12.5rem;
+	height: 12.5rem;
+	image-rendering: pixelated;
+}
+
+.name {
+	--text-color: var(--primary);
+	color: var(--text-color);
+	font-size: 2rem;
+	/* font-size: clamp(2.25rem, 10vw, 3rem); */
+	font-weight: 600;
+	font-style: italic;
+	text-align: center;
+	text-shadow: 5px 5px 30px rgba(0, 0, 0, 0.25), 0 0 0.25rem var(--text-color);
+}
+
+.id {
+	font-size: 1.25rem;
+	/* font-size: clamp(2.25rem, 10vw, 3rem); */
+	font-weight: 200;
+}

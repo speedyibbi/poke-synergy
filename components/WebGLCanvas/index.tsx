@@ -4,20 +4,17 @@ import { Canvas, useFrame, useLoader } from '@react-three/fiber';
 import { CanvasContext } from '@/store/CanvasContext';
 import styles from './WebGLCanvas.module.css';
 
-const Scene = () => {
-	const { canvasState } = useContext(CanvasContext);
+type Props = {
+	scale: number;
+};
 
+const Scene: React.FC<Props> = (props) => {
 	const buffRef = useRef<any>();
 	const texture = useLoader(THREE.TextureLoader, '/particle.svg');
 
 	const radius = 50;
 	const pointCount = 5000;
 	const rotationSpeed = 0.001;
-
-	let scale = useMemo(() => {
-		if (canvasState === 0) return 1;
-		if (canvasState === 1) return 3;
-	}, [canvasState]);
 
 	const positions = useMemo(() => {
 		const coordinates = [];
@@ -73,7 +70,7 @@ const Scene = () => {
 	});
 
 	return (
-		<points ref={buffRef} position={[0, 0, 0]} scale={scale}>
+		<points ref={buffRef} position={[0, 0, 0]} scale={props.scale}>
 			<bufferGeometry attach='geometry'>
 				<bufferAttribute
 					attach='attributes-position'
@@ -95,10 +92,17 @@ const Scene = () => {
 };
 
 const WebGLCanvas = React.memo(() => {
+	const { canvasState } = useContext(CanvasContext);
+
+	let scale = useMemo(() => {
+		if (canvasState === 0) return 1;
+		if (canvasState === 1) return 3;
+	}, [canvasState]);
+
 	return (
 		<section className={`${styles.webGLCanvas}`}>
 			<Canvas camera={{ position: [0, 0, -100] }}>
-				<Scene />
+				<Scene scale={scale ? scale : 1} />
 			</Canvas>
 		</section>
 	);
