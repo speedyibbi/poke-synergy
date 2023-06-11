@@ -1,12 +1,12 @@
 .listing {
 	display: flex;
 	justify-content: center;
-	align-items: center;
+	align-items: flex-start;
 }
 
 .navigation {
 	width: 1.5rem;
-	margin: 2rem;
+	margin: 14.5rem 0;
 	cursor: pointer;
 	transition: var(--primary-transition);
 }
@@ -26,6 +26,7 @@
 
 .pokemon {
 	width: 20rem;
+
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -43,7 +44,6 @@
 	--text-color: var(--primary);
 	color: var(--text-color);
 	font-size: 2rem;
-	/* font-size: clamp(2.25rem, 10vw, 3rem); */
 	font-weight: 600;
 	font-style: italic;
 	text-align: center;
@@ -52,6 +52,15 @@
 
 .id {
 	font-size: 1.25rem;
-	/* font-size: clamp(2.25rem, 10vw, 3rem); */
 	font-weight: 200;
+}
+
+.button {
+	margin-top: 1rem;
+}
+
+@media screen and (min-width: 60rem) {
+	.pokemon {
+		margin: 0 2rem;
+	}
 }

@@ -1,6 +1,7 @@
 import styles from './Button.module.css';
 
 type Props = {
+	className?: string;
 	onClick?: Function;
 	children?: React.ReactNode;
 };
@@ -12,7 +13,10 @@ const Button: React.FC<Props> = (props) => {
 
 	return (
 		<>
-			<button onClick={buttonClickHandler} className={`${styles.button}`}>
+			<button
+				onClick={buttonClickHandler}
+				className={`${styles.button} ${props.className}`}
+			>
 				{props.children}
 			</button>
 		</>

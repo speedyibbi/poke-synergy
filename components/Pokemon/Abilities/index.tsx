@@ -15,11 +15,18 @@ type Props = {
 };
 
 const Abilities: React.FC<Props> = (props) => {
+	const uniqueAbilityIndices = props.abilities
+		.map((ability) => JSON.stringify(ability.ability))
+		.map((value, index, array) => array.indexOf(value) === index);
+	const abilities = props.abilities.filter(
+		(value, index) => uniqueAbilityIndices[index]
+	);
+
 	return (
 		<ul className={`${styles.abilities}`}>
-			{props.abilities.map((ability: Ability) => {
+			{abilities.map((ability: Ability) => {
 				return (
-					<li key={ability.ability.name}>
+					<li key={ability.slot}>
 						<Ability name={ability.ability.name} hidden={ability.is_hidden} />
 					</li>
 				);

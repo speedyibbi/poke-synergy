@@ -1,8 +1,10 @@
 import { useRouter } from 'next/router';
 import Image from 'next/image';
-import Abilities from './Abilities';
-import styles from './Pokemon.module.css';
 import Types from './Types';
+import Abilities from './Abilities';
+import Stats from './Stats';
+import Button from '../Button';
+import styles from './Pokemon.module.css';
 
 const Pokemon: React.FC<any> = (props) => {
 	const router = useRouter();
@@ -46,6 +48,8 @@ const Pokemon: React.FC<any> = (props) => {
 				</h2>
 				<Types types={props.pokemon.types} />
 				<Abilities abilities={props.pokemon.abilities} />
+				<Stats stats={props.pokemon.stats} />
+				<Button className={`${styles.button}`}>Add to Team</Button>
 			</article>
 			<svg
 				width='43'

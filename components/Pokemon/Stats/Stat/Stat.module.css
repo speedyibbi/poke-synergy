@@ -1,0 +1,70 @@
+.stat {
+	--key-width: 5rem;
+	--value-width: 3rem;
+	--bar-max-width: calc(100% - 8rem);
+	width: 100%;
+	position: relative;
+	display: grid;
+	grid-auto-rows: 2rem;
+	grid-template-columns: var(--key-width) var(--value-width) var(
+			--bar-max-width
+		);
+	justify-content: flex-start;
+	align-items: center;
+}
+
+.key {
+	--text-color: var(--primary);
+	color: var(--text-color);
+	font-size: 1rem;
+	font-weight: 600;
+}
+
+.value {
+	--text-color: var(--primary);
+	color: var(--text-color);
+	font-size: 1rem;
+	font-weight: 200;
+}
+
+.bar {
+	display: inline-block;
+	height: 0.15rem;
+	border-radius: 0.6rem;
+	background-color: var(--bar-color);
+}
+
+.bar::before {
+	content: '';
+	width: var(--bar-max-width);
+	position: absolute;
+	display: inline-block;
+	height: 0.15rem;
+	border-radius: 0.6rem;
+	background-color: rgba(255, 255, 255, 0.25);
+	z-index: -1;
+}
+
+.VERYPOOR {
+	--bar-color: #ff4b4b;
+}
+
+.POOR {
+	--bar-color: #ff934b;
+}
+
+.AVERAGE {
+	--bar-color: #ffcf4b;
+}
+
+.GOOD {
+	--bar-color: #62ff6c;
+}
+
+.GREAT {
+	--bar-color: #4bffb7;
+}
+
+.EXCELLENT {
+	--bar-color: #4bd8ff;
+}

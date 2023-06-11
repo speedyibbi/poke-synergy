@@ -17,7 +17,6 @@
 .text {
 	color: var(--text-color);
 	font-size: 1rem;
-	/* font-size: clamp(2.25rem, 10vw, 3rem); */
 	font-weight: 600;
 }
 
@@ -41,7 +40,7 @@
 	--bg-color: #ef97e6;
 }
 
-.FIGHT {
+.FIGHTING {
 	--bg-color: #d94256;
 }
 

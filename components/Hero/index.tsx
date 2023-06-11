@@ -6,16 +6,16 @@ import styles from './Hero.module.css';
 
 const Hero = () => {
 	const router = useRouter();
-	const { updateCanvasState } = useContext(CanvasContext);
+	// const { updateCanvasState } = useContext(CanvasContext);
 
 	const buttonHandler = () => {
-		updateCanvasState(1);
+		// updateCanvasState(1);
 		router.push('/pokemon/1');
 	};
 
-	useEffect(() => {
-		updateCanvasState(0);
-	}, []);
+	// useEffect(() => {
+	// 	updateCanvasState(0);
+	// }, []);
 
 	return (
 		<section className={`${styles.hero}`}>

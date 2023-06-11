@@ -18,7 +18,7 @@ const Types: React.FC<Props> = (props) => {
 		<ul className={`${styles.types}`}>
 			{props.types.map((type: Type) => {
 				return (
-					<li key={type.type.name}>
+					<li key={type.slot}>
 						<Type name={type.type.name} />
 					</li>
 				);

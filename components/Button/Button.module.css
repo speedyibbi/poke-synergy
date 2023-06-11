@@ -3,9 +3,8 @@
 	--bg-color: var(--primary);
 	--x-offset: 0.2rem;
 	--y-offset: 0.25rem;
-	padding: 0.75rem 2.25rem;
+	padding: 0.5rem 2.25rem;
 	position: relative;
-	cursor: pointer;
 	color: var(--text-color);
 	font-size: 1.1rem;
 	font-weight: 600;

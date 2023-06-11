@@ -92,17 +92,18 @@ const Scene: React.FC<Props> = (props) => {
 };
 
 const WebGLCanvas = React.memo(() => {
-	const { canvasState } = useContext(CanvasContext);
+	// const { canvasState } = useContext(CanvasContext);
 
-	let scale = useMemo(() => {
-		if (canvasState === 0) return 1;
-		if (canvasState === 1) return 3;
-	}, [canvasState]);
+	// let scale = useMemo(() => {
+	// 	if (canvasState === 0) return 1;
+	// 	if (canvasState === 1) return 3;
+	// }, [canvasState]);
 
 	return (
 		<section className={`${styles.webGLCanvas}`}>
 			<Canvas camera={{ position: [0, 0, -100] }}>
-				<Scene scale={scale ? scale : 1} />
+				{/* <Scene scale={scale ? scale : 1} /> */}
+				<Scene scale={3} />
 			</Canvas>
 		</section>
 	);

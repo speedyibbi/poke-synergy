@@ -14,7 +14,7 @@ const Type: React.FC<Props> = (props) => {
 	else if (name === 'DRAGON') colorClass = styles.DRAGON;
 	else if (name === 'ELECTRIC') colorClass = styles.ELECTRIC;
 	else if (name === 'FAIRY') colorClass = styles.FAIRY;
-	else if (name === 'FIGHT') colorClass = styles.FIGHT;
+	else if (name === 'FIGHTING') colorClass = styles.FIGHTING;
 	else if (name === 'FIRE') colorClass = styles.FIRE;
 	else if (name === 'FLYING') colorClass = styles.FLYING;
 	else if (name === 'GHOST') colorClass = styles.GHOST;
