@@ -6,15 +6,7 @@ type Props = {
 };
 
 const Stat: React.FC<Props> = (props) => {
-	let name = '';
 	let colorClass = '';
-
-	if (props.name === 'hp') name = 'HP';
-	else if (props.name === 'attack') name = 'Attack';
-	else if (props.name === 'defense') name = 'Defense';
-	else if (props.name === 'special-attack') name = 'Sp. Atk';
-	else if (props.name === 'special-defense') name = 'Sp. Def';
-	else if (props.name === 'speed') name = 'Speed';
 
 	if (props.value <= 35) colorClass = styles.VERYPOOR;
 	else if (props.value > 35 && props.value <= 70) colorClass = styles.POOR;
@@ -25,7 +17,7 @@ const Stat: React.FC<Props> = (props) => {
 
 	return (
 		<div className={`${styles.stat}`}>
-			<span className={`${styles.key}`}>{name}</span>
+			<span className={`${styles.key}`}>{props.name}</span>
 			<span className={`${styles.value}`}>{props.value}</span>
 			<span
 				className={`${styles.bar} ${colorClass}`}

@@ -1,4 +1,3 @@
-import CanvasContextProvider from '@/store/CanvasContext';
 import Header from './Header';
 import WebGLCanvas from './WebGLCanvas';
 
@@ -10,10 +9,8 @@ const Layout: React.FC<Props> = (props) => {
 	return (
 		<>
 			<Header />
-			<CanvasContextProvider>
-				<main>{props.children}</main>
-				<WebGLCanvas />
-			</CanvasContextProvider>
+			<main>{props.children}</main>
+			<WebGLCanvas />
 		</>
 	);
 };

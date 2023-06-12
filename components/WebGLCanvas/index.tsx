@@ -1,7 +1,6 @@
-import React, { useContext, useMemo, useRef } from 'react';
+import React, { useMemo, useRef } from 'react';
 import * as THREE from 'three';
 import { Canvas, useFrame, useLoader } from '@react-three/fiber';
-import { CanvasContext } from '@/store/CanvasContext';
 import styles from './WebGLCanvas.module.css';
 
 type Props = {
@@ -45,8 +44,6 @@ const Scene: React.FC<Props> = (props) => {
 		index *= 3;
 		return originalPositions[index + offset];
 	};
-
-	const particle = Math.floor(Math.random() * ((pointCount - 1) * 3 + 1));
 
 	useFrame((state) => {
 		const positionsAttribute =
@@ -92,17 +89,9 @@ const Scene: React.FC<Props> = (props) => {
 };
 
 const WebGLCanvas = React.memo(() => {
-	// const { canvasState } = useContext(CanvasContext);
-
-	// let scale = useMemo(() => {
-	// 	if (canvasState === 0) return 1;
-	// 	if (canvasState === 1) return 3;
-	// }, [canvasState]);
-
 	return (
 		<section className={`${styles.webGLCanvas}`}>
 			<Canvas camera={{ position: [0, 0, -100] }}>
-				{/* <Scene scale={scale ? scale : 1} /> */}
 				<Scene scale={3} />
 			</Canvas>
 		</section>

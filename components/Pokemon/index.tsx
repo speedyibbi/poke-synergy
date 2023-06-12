@@ -4,15 +4,23 @@ import Types from './Types';
 import Abilities from './Abilities';
 import Stats from './Stats';
 import Button from '../Button';
+import Error from '../Error';
+import Pokemon_type from './type';
 import styles from './Pokemon.module.css';
 
-const Pokemon: React.FC<any> = (props) => {
+type Props = {
+	pokemon: Pokemon_type;
+};
+
+const Pokemon: React.FC<Props> = (props) => {
 	const router = useRouter();
 
 	const navigationHandler = (jump: number) => {
 		const id = Number(router.query.id);
 		router.push(`/pokemon/${id + jump}`);
 	};
+
+	if ('error' in props.pokemon) return <Error />;
 
 	return (
 		<section className={`${styles.listing}`}>
@@ -40,10 +48,7 @@ const Pokemon: React.FC<any> = (props) => {
 					unoptimized
 				/>
 				<h2 className={`${styles.name}`}>
-					{props.pokemon.name[0].toUpperCase() +
-						props.pokemon.name
-							.slice(1, props.pokemon.name.length)
-							.toLowerCase()}
+					{props.pokemon.name}
 					<span className={`${styles.id}`}> #{props.pokemon.id}</span>
 				</h2>
 				<Types types={props.pokemon.types} />

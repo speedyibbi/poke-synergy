@@ -1,0 +1,36 @@
+.teamCard {
+	width: fit-content;
+	padding: 2rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 0.6rem;
+	background-color: rgba(0, 0, 0, 0.3);
+	backdrop-filter: blur(0.5rem);
+	filter: drop-shadow(0 0 1rem black);
+}
+
+.team {
+	width: 22rem;
+	display: flex;
+	gap: 2rem;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: flex-end;
+	list-style: none;
+}
+
+.pokemon {
+	width: calc(18rem / 3);
+	padding: 0.5rem;
+	text-align: center;
+	border-bottom: 2px solid white;
+	filter: drop-shadow(0 0 0.25rem black);
+}
+
+.trainer {
+	width: 11rem;
+	height: 15rem;
+	image-rendering: pixelated;
+	filter: drop-shadow(0 0 0.25rem black);
+}

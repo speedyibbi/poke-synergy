@@ -1,6 +1,7 @@
 .hero {
 	min-height: 19rem;
 	margin-top: 5rem;
+	margin-right: auto;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;

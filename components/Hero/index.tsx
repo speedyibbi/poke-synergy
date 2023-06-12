@@ -1,21 +1,13 @@
-import { useContext, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { CanvasContext } from '@/store/CanvasContext';
 import Button from '../Button';
 import styles from './Hero.module.css';
 
 const Hero = () => {
 	const router = useRouter();
-	// const { updateCanvasState } = useContext(CanvasContext);
 
 	const buttonHandler = () => {
-		// updateCanvasState(1);
 		router.push('/pokemon/1');
 	};
-
-	// useEffect(() => {
-	// 	updateCanvasState(0);
-	// }, []);
 
 	return (
 		<section className={`${styles.hero}`}>

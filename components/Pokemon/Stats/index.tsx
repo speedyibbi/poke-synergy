@@ -1,18 +1,10 @@
 import { useState } from 'react';
+import { PokemonStat } from 'pokenode-ts';
 import Stat from './Stat';
 import styles from './Stats.module.css';
 
-type Stat = {
-	stat: {
-		name: string;
-		url: string;
-	};
-	base_stat: number;
-	effort: number;
-};
-
 type Props = {
-	stats: Stat[];
+	stats: PokemonStat[];
 };
 
 const Stats: React.FC<Props> = (props) => {
@@ -39,7 +31,7 @@ const Stats: React.FC<Props> = (props) => {
 				/>
 			</svg>
 			<ul className={`${styles.stats} ${!toggle && styles.hidden}`}>
-				{props.stats.map((stat: Stat) => {
+				{props.stats.map((stat: PokemonStat) => {
 					return (
 						<li key={stat.stat.name}>
 							{<Stat name={stat.stat.name} value={stat.base_stat} />}

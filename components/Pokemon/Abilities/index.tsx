@@ -1,17 +1,9 @@
+import { PokemonAbility } from 'pokenode-ts';
 import Ability from './Ability';
 import styles from './Abilities.module.css';
 
-type Ability = {
-	ability: {
-		name: string;
-		url: string;
-	};
-	is_hidden: boolean;
-	slot: number;
-};
-
 type Props = {
-	abilities: Ability[];
+	abilities: PokemonAbility[];
 };
 
 const Abilities: React.FC<Props> = (props) => {
@@ -24,7 +16,7 @@ const Abilities: React.FC<Props> = (props) => {
 
 	return (
 		<ul className={`${styles.abilities}`}>
-			{abilities.map((ability: Ability) => {
+			{abilities.map((ability: PokemonAbility) => {
 				return (
 					<li key={ability.slot}>
 						<Ability name={ability.ability.name} hidden={ability.is_hidden} />
