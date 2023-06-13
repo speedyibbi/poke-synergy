@@ -1,0 +1,24 @@
+.pokemon {
+	width: 100%;
+	height: 4rem;
+	filter: var(--drop-shadow);
+	transition: var(--primary-transition);
+}
+
+.pokemon:hover {
+	scale: 1.3;
+}
+
+.pokemon:active {
+	animation: 3s shrink 1 ease-in;
+}
+
+.plus {
+	filter: drop-shadow(0 0 0.1rem var(--border-color));
+}
+
+@keyframes shrink {
+	to {
+		scale: 0;
+	}
+}

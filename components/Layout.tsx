@@ -1,5 +1,6 @@
 import Header from './Header';
 import WebGLCanvas from './WebGLCanvas';
+import TeamContextProvider from '@/store/TeamContext';
 
 type Props = {
 	children?: React.ReactNode;
@@ -9,7 +10,9 @@ const Layout: React.FC<Props> = (props) => {
 	return (
 		<>
 			<Header />
-			<main>{props.children}</main>
+			<TeamContextProvider>
+				<main>{props.children}</main>
+			</TeamContextProvider>
 			<WebGLCanvas />
 		</>
 	);

@@ -1,26 +1,72 @@
+import { useContext, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import Types from './Types';
 import Abilities from './Abilities';
 import Stats from './Stats';
 import Button from '../Button';
-import Error from '../Error';
+import Loader from '../Loader';
 import Pokemon_type from './type';
+import { TeamContext } from '@/store/TeamContext';
 import styles from './Pokemon.module.css';
 
 type Props = {
-	pokemon: Pokemon_type;
+	id: number;
 };
 
 const Pokemon: React.FC<Props> = (props) => {
+	const { addToTeam } = useContext(TeamContext);
+	const [pokemon, setPokemon] = useState<Pokemon_type>();
 	const router = useRouter();
 
 	const navigationHandler = (jump: number) => {
-		const id = Number(router.query.id);
-		router.push(`/pokemon/${id + jump}`);
+		router.push(`/pokemon/${props.id + jump}`);
 	};
 
-	if ('error' in props.pokemon) return <Error />;
+	const teamAdditionHandler = () => {
+		addToTeam(pokemon);
+	};
+
+	useEffect(() => {
+		setPokemon(undefined);
+		fetch(`/api/pokemon/${props.id}`)
+			.then((data) => data.json())
+			.then((data) => {
+				setPokemon(data.pokemon);
+			})
+			.catch(() => {
+				setPokemon({ error: 'Unable to get Pokemon data' });
+			});
+	}, [props.id]);
+
+	const content = pokemon ? (
+		'error' in pokemon ? (
+			<p className={`${styles.error}`}>{pokemon.error}</p>
+		) : (
+			<>
+				<Image
+					src={pokemon.image}
+					alt={pokemon.name}
+					width={200}
+					height={200}
+					className={`${styles.image}`}
+					unoptimized
+				/>
+				<h2 className={`${styles.name}`}>
+					{pokemon.name}
+					<span className={`${styles.id}`}> #{pokemon.id}</span>
+				</h2>
+				<Types types={pokemon.types} />
+				<Abilities abilities={pokemon.abilities} />
+				<Stats stats={pokemon.stats} />
+				<Button onClick={teamAdditionHandler} className={`${styles.button}`}>
+					Add to Team
+				</Button>
+			</>
+		)
+	) : (
+		<Loader />
+	);
 
 	return (
 		<section className={`${styles.listing}`}>
@@ -38,24 +84,7 @@ const Pokemon: React.FC<Props> = (props) => {
 					fill='white'
 				/>
 			</svg>
-			<article className={`${styles.pokemon}`}>
-				<Image
-					src={props.pokemon.image}
-					alt={props.pokemon.name}
-					width={200}
-					height={200}
-					className={`${styles.image}`}
-					unoptimized
-				/>
-				<h2 className={`${styles.name}`}>
-					{props.pokemon.name}
-					<span className={`${styles.id}`}> #{props.pokemon.id}</span>
-				</h2>
-				<Types types={props.pokemon.types} />
-				<Abilities abilities={props.pokemon.abilities} />
-				<Stats stats={props.pokemon.stats} />
-				<Button className={`${styles.button}`}>Add to Team</Button>
-			</article>
+			<article className={`${styles.pokemon}`}>{content}</article>
 			<svg
 				width='43'
 				height='25'

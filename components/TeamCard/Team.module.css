@@ -1,4 +1,7 @@
 .teamCard {
+	--border-color: #fff;
+	--selected-color: #009dff;
+	--drop-shadow: drop-shadow(0 0 0.1rem black) drop-shadow(0 0 0.1rem black);
 	width: min(100%, 35rem);
 	margin: 1rem;
 	padding: 2rem;
@@ -20,20 +23,16 @@
 	list-style: none;
 }
 
-.pokemon {
+.teamMember {
 	width: 5rem;
 	padding: 0.5rem;
 	text-align: center;
-	border-bottom: 2px solid white;
-	filter: drop-shadow(0 0 0.25rem black);
+	border-bottom: 2px solid var(--border-color);
+	transition: var(--primary-transition);
 }
 
-.trainer {
-	width: 11rem;
-	height: 15rem;
-	margin: 0.25rem;
-	image-rendering: pixelated;
-	filter: drop-shadow(0 0 0.25rem black);
+.teamMember.selected {
+	border-color: var(--selected-color);
 }
 
 @media screen and (min-width: 60rem) {
