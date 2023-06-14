@@ -39,7 +39,7 @@ const TeamContextProvider: React.FC<Props> = (props) => {
 	};
 
 	const addToTeam = (pokemon: Pokemon_type) => {
-		if ('error' in pokemon) return;
+		if (!pokemon || 'error' in pokemon) return;
 
 		let emptyTeamIndex = -1;
 		let duplicate = false;

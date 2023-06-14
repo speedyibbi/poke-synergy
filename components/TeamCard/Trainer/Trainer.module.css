@@ -4,4 +4,11 @@
 	margin: 0.25rem;
 	image-rendering: pixelated;
 	filter: var(--drop-shadow);
+	transition: var(--primary-transition);
+}
+
+.trainer:hover {
+	filter: drop-shadow(0 0 0.1rem var(--secondary))
+		drop-shadow(0 0 0.25rem var(--secondary))
+		drop-shadow(0 0 0.5rem var(--secondary));
 }

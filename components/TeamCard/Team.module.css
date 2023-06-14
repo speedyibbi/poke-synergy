@@ -26,6 +26,7 @@
 .teamMember {
 	width: 5rem;
 	padding: 0.5rem;
+	cursor: pointer;
 	text-align: center;
 	border-bottom: 2px solid var(--border-color);
 	transition: var(--primary-transition);

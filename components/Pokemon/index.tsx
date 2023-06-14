@@ -27,6 +27,11 @@ const Pokemon: React.FC<Props> = (props) => {
 		addToTeam(pokemon);
 	};
 
+	const keypressHandler = (event: any) => {
+		if (event.keyCode === 37) router.push(`/pokemon/${props.id - 1}`);
+		else if (event.keyCode === 39) router.push(`/pokemon/${props.id + 1}`);
+	};
+
 	useEffect(() => {
 		setPokemon(undefined);
 		fetch(`/api/pokemon/${props.id}`)
@@ -37,6 +42,12 @@ const Pokemon: React.FC<Props> = (props) => {
 			.catch(() => {
 				setPokemon({ error: 'Unable to get Pokemon data' });
 			});
+
+		document.addEventListener('keydown', keypressHandler, false);
+
+		return () => {
+			document.removeEventListener('keydown', keypressHandler, false);
+		};
 	}, [props.id]);
 
 	const content = pokemon ? (
