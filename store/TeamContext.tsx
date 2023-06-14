@@ -6,6 +6,7 @@ type Team = Array<Pokemon_type | undefined>;
 type Context = {
 	team: Team;
 	selected: number;
+	filledSlots: number;
 	select: Function;
 	addToTeam: Function;
 	removeFromTeam: Function;
@@ -14,6 +15,7 @@ type Context = {
 export const TeamContext = createContext<Context>({
 	team: [],
 	selected: -1,
+	filledSlots: 0,
 	select: () => {},
 	addToTeam: (pokemon: Pokemon_type) => {},
 	removeFromTeam: (idx: number) => {},
@@ -33,6 +35,7 @@ const TeamContextProvider: React.FC<Props> = (props) => {
 		undefined,
 	]);
 	const [selected, setSelected] = useState(-1);
+	const [filledSlots, setFilledSlots] = useState(0);
 
 	const select = (idx: number) => {
 		setSelected(idx);
@@ -56,6 +59,11 @@ const TeamContextProvider: React.FC<Props> = (props) => {
 
 		const updatedTeam = team;
 		if (selected !== -1) {
+			if (!updatedTeam[selected] || 'error' in updatedTeam[selected]!) {
+				setFilledSlots((state) => {
+					return state + 1;
+				});
+			}
 			updatedTeam[selected] = pokemon;
 			setTeam([...updatedTeam]);
 		} else {
@@ -68,6 +76,9 @@ const TeamContextProvider: React.FC<Props> = (props) => {
 					...updatedTeam.slice(0, emptyTeamIndex),
 					...updatedTeam.slice(emptyTeamIndex + 1, updatedTeam.length),
 				]);
+				setFilledSlots((state) => {
+					return state + 1;
+				});
 			}
 		}
 	};
@@ -77,6 +88,9 @@ const TeamContextProvider: React.FC<Props> = (props) => {
 		const updatedTeam = team;
 		updatedTeam[idx] = undefined;
 		setTeam([...updatedTeam]);
+		setFilledSlots((state) => {
+			return state - 1;
+		});
 	};
 
 	return (
@@ -84,6 +98,7 @@ const TeamContextProvider: React.FC<Props> = (props) => {
 			value={{
 				team,
 				selected,
+				filledSlots,
 				select,
 				addToTeam,
 				removeFromTeam,

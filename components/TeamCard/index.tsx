@@ -6,7 +6,8 @@ import { TeamContext } from '@/store/TeamContext';
 import styles from './Team.module.css';
 
 const TeamCard = () => {
-	const { team, selected, select, removeFromTeam } = useContext(TeamContext);
+	const { team, selected, filledSlots, select, removeFromTeam } =
+		useContext(TeamContext);
 	let timeout: string | number | NodeJS.Timeout | undefined;
 
 	const selectionHandler = (idx: number) => {
@@ -50,6 +51,7 @@ const TeamCard = () => {
 				})}
 			</ul>
 			<Trainer />
+			<span className={`${styles.counter}`}>{filledSlots}</span>
 		</section>
 	);
 };

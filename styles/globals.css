@@ -6,10 +6,18 @@
 	--primary: #fff;
 	--secondary: #ff1b3c;
 	--tertiary: #000;
+	--selection: #009dff;
 
 	--primary-gradient: linear-gradient(107.56deg, #000000 0%, #4e171f 52.4%);
-
 	--primary-transition: all ease-in-out 0.2s;
+
+	--primary-blur: blur(0.5rem);
+	--secondary-blur: blur(2rem);
+
+	--card-bg-color: rgba(0, 0, 0, 0.3);
+	--card-drop-shadow: drop-shadow(0 0 1rem black);
+	--card-item-drop-shadow: drop-shadow(0 0 0.1rem black)
+		drop-shadow(0 0 0.1rem black);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -58,7 +66,7 @@ a {
 	max-width: 100rem;
 	min-height: 100vh;
 	margin: auto;
-	padding: 3.5% 7%;
+	padding: 1.5% 7%;
 	position: relative;
 }
 

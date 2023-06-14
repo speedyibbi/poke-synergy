@@ -27,11 +27,11 @@
 .pokemon {
 	width: 16rem;
 	display: flex;
+	gap: 1rem;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	align-self: center;
-	gap: 1rem;
 }
 
 .image {
@@ -57,7 +57,7 @@
 }
 
 .button {
-	margin-top: 1rem;
+	margin: 1rem 0;
 }
 
 .error {

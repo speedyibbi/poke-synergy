@@ -1,17 +1,18 @@
 .teamCard {
-	--border-color: #fff;
-	--selected-color: #009dff;
-	--drop-shadow: drop-shadow(0 0 0.1rem black) drop-shadow(0 0 0.1rem black);
+	--border-color: var(--primary);
+	--selected-color: var(--selection);
+	--drop-shadow: var(--card-item-drop-shadow);
 	width: min(100%, 35rem);
 	margin: 1rem;
 	padding: 2rem;
+	position: relative;
 	display: none;
 	justify-content: center;
 	align-items: center;
 	border-radius: 0.6rem;
-	background-color: rgba(0, 0, 0, 0.3);
-	backdrop-filter: blur(0.5rem);
-	filter: drop-shadow(0 0 1rem black);
+	background-color: var(--card-bg-color);
+	backdrop-filter: var(--primary-blur);
+	filter: var(--card-drop-shadow);
 }
 
 .team {
@@ -34,6 +35,23 @@
 
 .teamMember.selected {
 	border-color: var(--selected-color);
+}
+
+.counter {
+	width: 2rem;
+	height: 2rem;
+	position: absolute;
+	top: 0rem;
+	right: 0rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: var(--tertiary);
+	font-size: 1rem;
+	font-weight: 600;
+	border-radius: 50%;
+	background-color: var(--border-color);
+	transform: translate(25%, -25%);
 }
 
 @media screen and (min-width: 60rem) {
