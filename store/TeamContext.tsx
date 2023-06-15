@@ -10,6 +10,8 @@ type Context = {
 	select: Function;
 	addToTeam: Function;
 	removeFromTeam: Function;
+	generateRandomTeam: Function;
+	clearTeam: Function;
 };
 
 export const TeamContext = createContext<Context>({
@@ -19,6 +21,8 @@ export const TeamContext = createContext<Context>({
 	select: () => {},
 	addToTeam: (pokemon: Pokemon_type) => {},
 	removeFromTeam: (idx: number) => {},
+	generateRandomTeam: () => {},
+	clearTeam: () => {},
 });
 
 type Props = {
@@ -57,7 +61,7 @@ const TeamContextProvider: React.FC<Props> = (props) => {
 		});
 		if (duplicate) return;
 
-		const updatedTeam = team;
+		const updatedTeam = [...team];
 		if (selected !== -1) {
 			if (!updatedTeam[selected] || 'error' in updatedTeam[selected]!) {
 				setFilledSlots((state) => {
@@ -93,6 +97,48 @@ const TeamContextProvider: React.FC<Props> = (props) => {
 		});
 	};
 
+	const generateRandomTeam = async () => {
+		const excluded = team.map((teamMember) => {
+			if (teamMember && !('error' in teamMember)) return teamMember.id;
+		});
+
+		const teamSlots = excluded
+			.map((id) => {
+				if (id) return;
+				let newID;
+				do {
+					newID = Math.floor(Math.random() * (1010 + 1));
+				} while (excluded.includes(newID));
+				return newID;
+			})
+			.filter((id) => {
+				if (id) return id;
+			});
+
+		const teamMembers = await Promise.all(
+			teamSlots.map(async (id) => {
+				const pokemon = await fetch(`/api/pokemon/${id}`);
+				return pokemon;
+			})
+		).then((data) => Promise.all(data.map((pokemon) => pokemon.json())));
+
+		const updatedTeam = [...team];
+		teamMembers.forEach((teamMember) => {
+			const idx = updatedTeam.findIndex(
+				(pokemon) => !pokemon || 'error' in pokemon
+			);
+			updatedTeam[idx] = teamMember.pokemon;
+		});
+
+		setTeam([...updatedTeam]);
+		setFilledSlots(team.length);
+	};
+
+	const clearTeam = () => {
+		setTeam([undefined, undefined, undefined, undefined, undefined, undefined]);
+		setFilledSlots(0);
+	};
+
 	return (
 		<TeamContext.Provider
 			value={{
@@ -102,6 +148,8 @@ const TeamContextProvider: React.FC<Props> = (props) => {
 				select,
 				addToTeam,
 				removeFromTeam,
+				generateRandomTeam,
+				clearTeam,
 			}}
 		>
 			{props.children}
