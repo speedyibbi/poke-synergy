@@ -11,17 +11,22 @@ const TeamMember: React.FC<Props> = (props) => {
 	return (
 		<>
 			{props.pokemon && !('error' in props.pokemon) ? (
-				<img
-					src={props.pokemon.image}
-					alt={props.pokemon.name}
-					onMouseDown={() => {
-						props.onMouseDown();
-					}}
-					onMouseUp={() => {
-						props.onMouseUp();
-					}}
-					className={`${styles.pokemon}`}
-				/>
+				<div className={`${styles.container}`}>
+					<img
+						src={props.pokemon.image}
+						alt={props.pokemon.name}
+						onMouseDown={() => {
+							props.onMouseDown();
+						}}
+						onMouseUp={() => {
+							props.onMouseUp();
+						}}
+						className={`${styles.pokemon}`}
+					/>
+					<span className={`${styles.info}`}>
+						{props.pokemon.name} #{props.pokemon.id}
+					</span>
+				</div>
 			) : (
 				<svg
 					width='35'

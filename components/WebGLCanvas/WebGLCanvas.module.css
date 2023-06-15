@@ -5,6 +5,8 @@
 	top: 0;
 	right: 0;
 	transition: var(--primary-transition);
+	/* filter: var(--primary-blur); */
+	background-color: var(--card-bg-color);
 	z-index: -1;
 }
 

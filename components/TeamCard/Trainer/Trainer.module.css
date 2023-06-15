@@ -2,6 +2,7 @@
 	width: 11rem;
 	height: 15rem;
 	margin: 0.25rem;
+	display: none;
 	image-rendering: pixelated;
 	filter: var(--drop-shadow);
 	transition: var(--primary-transition);
@@ -11,4 +12,10 @@
 	filter: drop-shadow(0 0 0.1rem var(--secondary))
 		drop-shadow(0 0 0.25rem var(--secondary))
 		drop-shadow(0 0 0.5rem var(--secondary));
+}
+
+@media screen and (min-width: 70rem) {
+	.trainer {
+		display: block;
+	}
 }

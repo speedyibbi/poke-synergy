@@ -12,7 +12,7 @@ const Scene: React.FC<Props> = (props) => {
 	const texture = useLoader(THREE.TextureLoader, '/particle.svg');
 
 	const radius = 50;
-	const pointCount = 5000;
+	const pointCount = 1000;
 	const rotationSpeed = 0.001;
 
 	const positions = useMemo(() => {
@@ -79,7 +79,7 @@ const Scene: React.FC<Props> = (props) => {
 			<pointsMaterial
 				attach='material'
 				color='#FFF'
-				size={0.25}
+				size={0.5}
 				map={texture}
 				alphaTest={0.5}
 				opacity={1}

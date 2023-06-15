@@ -1,3 +1,11 @@
+.container {
+	position: relative;
+}
+
+.container:hover .info {
+	opacity: 1;
+}
+
 .pokemon {
 	width: 100%;
 	height: 4rem;
@@ -13,8 +21,35 @@
 	animation: 3s shrink 1 ease-in;
 }
 
+.info {
+	--text-color: var(--secondary);
+	padding: 0.5rem 1rem;
+	position: absolute;
+	top: 0;
+	left: 50%;
+	color: var(--text-color);
+	font-size: 1rem;
+	font-weight: 600;
+	letter-spacing: 0.1em;
+	white-space: nowrap;
+	text-shadow: 5px 5px 30px rgba(0, 0, 0, 0.25), 0 0 0.25rem var(--text-color);
+	border-radius: 0.6rem;
+	background-color: var(--card-bg-color);
+	backdrop-filter: var(--primary-blur);
+	filter: var(--card-drop-shadow);
+	opacity: 0;
+	transform: translate(-50%, -100%);
+	transition: var(--primary-transition);
+}
+
 .plus {
 	filter: drop-shadow(0 0 0.1rem var(--border-color));
+	transition: var(--primary-transition);
+}
+
+.plus:hover {
+	filter: drop-shadow(0 0 0.1rem var(--border-color))
+		drop-shadow(0 0 0.1rem var(--border-color));
 }
 
 @keyframes shrink {

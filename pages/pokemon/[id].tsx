@@ -9,8 +9,8 @@ type Props = {
 const PokemonListing: React.FC<Props> = (props) => {
 	return (
 		<>
-			<TeamCard />
 			<Pokemon id={props.id} />
+			<TeamCard />
 		</>
 	);
 };

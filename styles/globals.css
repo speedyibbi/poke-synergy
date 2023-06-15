@@ -8,7 +8,7 @@
 	--tertiary: #000;
 	--selection: #009dff;
 
-	--primary-gradient: linear-gradient(107.56deg, #000000 0%, #4e171f 52.4%);
+	--primary-gradient: linear-gradient(107.56deg, #000000 26.87%, #ff1b3c 100%);
 	--primary-transition: all ease-in-out 0.2s;
 
 	--primary-blur: blur(0.5rem);
@@ -21,9 +21,6 @@
 }
 
 @media (prefers-color-scheme: dark) {
-	:root {
-	}
-
 	html {
 		color-scheme: dark;
 	}
@@ -42,7 +39,6 @@ body {
 }
 
 body {
-	min-height: 100vh;
 	background: var(--primary-gradient);
 }
 
@@ -67,7 +63,6 @@ a {
 	min-height: 100vh;
 	margin: auto;
 	padding: 1.5% 7%;
-	position: relative;
 }
 
 @media screen and (min-width: 60rem) {

@@ -21,7 +21,7 @@ export const TeamContext = createContext<Context>({
 	select: () => {},
 	addToTeam: (pokemon: Pokemon_type) => {},
 	removeFromTeam: (idx: number) => {},
-	generateRandomTeam: () => {},
+	generateRandomTeam: async () => {},
 	clearTeam: () => {},
 });
 
@@ -45,8 +45,8 @@ const TeamContextProvider: React.FC<Props> = (props) => {
 		setSelected(idx);
 	};
 
-	const addToTeam = (pokemon: Pokemon_type) => {
-		if (!pokemon || 'error' in pokemon) return;
+	const addToTeam = (pokemon: Pokemon_type): boolean => {
+		if (!pokemon || 'error' in pokemon) return false;
 
 		let emptyTeamIndex = -1;
 		let duplicate = false;
@@ -59,7 +59,7 @@ const TeamContextProvider: React.FC<Props> = (props) => {
 				duplicate = true;
 			if (!teamMember && emptyTeamIndex === -1) emptyTeamIndex = idx;
 		});
-		if (duplicate) return;
+		if (duplicate) return false;
 
 		const updatedTeam = [...team];
 		if (selected !== -1) {
@@ -85,19 +85,24 @@ const TeamContextProvider: React.FC<Props> = (props) => {
 				});
 			}
 		}
+
+		return true;
 	};
 
-	const removeFromTeam = (idx: number) => {
-		if (idx < 0 || idx > team.length - 1) return;
+	const removeFromTeam = (idx: number): boolean => {
+		if (idx < 0 || idx > team.length - 1) return false;
+
 		const updatedTeam = team;
 		updatedTeam[idx] = undefined;
 		setTeam([...updatedTeam]);
 		setFilledSlots((state) => {
 			return state - 1;
 		});
+
+		return true;
 	};
 
-	const generateRandomTeam = async () => {
+	const generateRandomTeam = async (): Promise<boolean> => {
 		const excluded = team.map((teamMember) => {
 			if (teamMember && !('error' in teamMember)) return teamMember.id;
 		});
@@ -116,11 +121,14 @@ const TeamContextProvider: React.FC<Props> = (props) => {
 			});
 
 		const teamMembers = await Promise.all(
-			teamSlots.map(async (id) => {
-				const pokemon = await fetch(`/api/pokemon/${id}`);
-				return pokemon;
-			})
-		).then((data) => Promise.all(data.map((pokemon) => pokemon.json())));
+			teamSlots.map(async (id) => await fetch(`/api/pokemon/${id}`))
+		)
+			.then((data) => Promise.all(data.map((pokemon) => pokemon.json())))
+			.catch((error) => {
+				return { error: 'Could not fetch data' };
+			});
+
+		if ('error' in teamMembers) return false;
 
 		const updatedTeam = [...team];
 		teamMembers.forEach((teamMember) => {
@@ -132,11 +140,14 @@ const TeamContextProvider: React.FC<Props> = (props) => {
 
 		setTeam([...updatedTeam]);
 		setFilledSlots(team.length);
+
+		return true;
 	};
 
-	const clearTeam = () => {
+	const clearTeam = (): boolean => {
 		setTeam([undefined, undefined, undefined, undefined, undefined, undefined]);
 		setFilledSlots(0);
+		return true;
 	};
 
 	return (

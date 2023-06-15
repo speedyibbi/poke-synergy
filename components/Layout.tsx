@@ -9,8 +9,8 @@ type Props = {
 const Layout: React.FC<Props> = (props) => {
 	return (
 		<>
-			<Header />
 			<TeamContextProvider>
+				<Header />
 				<main>{props.children}</main>
 			</TeamContextProvider>
 			<WebGLCanvas />
