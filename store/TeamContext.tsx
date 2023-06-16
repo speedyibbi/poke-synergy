@@ -48,7 +48,9 @@ const TeamContextProvider: React.FC<Props> = (props) => {
 
 	useEffect(() => {
 		localStorage.setItem('team', JSON.stringify(team));
-		setFilledSlots(team.length);
+		setFilledSlots(
+			team.filter((pokemon) => pokemon && !('error' in pokemon)).length
+		);
 	}, [team]);
 
 	const select = (idx: number) => {
