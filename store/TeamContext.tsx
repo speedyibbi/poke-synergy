@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 import Pokemon_type from '@/components/Pokemon/type';
 
 type Team = Array<Pokemon_type | undefined>;
@@ -40,6 +40,15 @@ const TeamContextProvider: React.FC<Props> = (props) => {
 	]);
 	const [selected, setSelected] = useState(-1);
 	const [filledSlots, setFilledSlots] = useState(0);
+
+	useEffect(() => {
+		const updatedTeam = localStorage.getItem('team');
+		if (updatedTeam) setTeam([...JSON.parse(updatedTeam)]);
+	}, []);
+
+	useEffect(() => {
+		localStorage.setItem('team', JSON.stringify(team));
+	}, [team]);
 
 	const select = (idx: number) => {
 		setSelected(idx);
