@@ -48,6 +48,7 @@ const TeamContextProvider: React.FC<Props> = (props) => {
 
 	useEffect(() => {
 		localStorage.setItem('team', JSON.stringify(team));
+		setFilledSlots(team.length);
 	}, [team]);
 
 	const select = (idx: number) => {
@@ -72,11 +73,6 @@ const TeamContextProvider: React.FC<Props> = (props) => {
 
 		const updatedTeam = [...team];
 		if (selected !== -1) {
-			if (!updatedTeam[selected] || 'error' in updatedTeam[selected]!) {
-				setFilledSlots((state) => {
-					return state + 1;
-				});
-			}
 			updatedTeam[selected] = pokemon;
 			setTeam([...updatedTeam]);
 		} else {
@@ -89,9 +85,6 @@ const TeamContextProvider: React.FC<Props> = (props) => {
 					...updatedTeam.slice(0, emptyTeamIndex),
 					...updatedTeam.slice(emptyTeamIndex + 1, updatedTeam.length),
 				]);
-				setFilledSlots((state) => {
-					return state + 1;
-				});
 			}
 		}
 
@@ -104,9 +97,6 @@ const TeamContextProvider: React.FC<Props> = (props) => {
 		const updatedTeam = team;
 		updatedTeam[idx] = undefined;
 		setTeam([...updatedTeam]);
-		setFilledSlots((state) => {
-			return state - 1;
-		});
 
 		return true;
 	};
@@ -148,14 +138,12 @@ const TeamContextProvider: React.FC<Props> = (props) => {
 		});
 
 		setTeam([...updatedTeam]);
-		setFilledSlots(team.length);
 
 		return true;
 	};
 
 	const clearTeam = (): boolean => {
 		setTeam([undefined, undefined, undefined, undefined, undefined, undefined]);
-		setFilledSlots(0);
 		return true;
 	};
 
