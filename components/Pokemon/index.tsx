@@ -20,7 +20,9 @@ const Pokemon: React.FC<Props> = (props) => {
 	const router = useRouter();
 
 	const navigationHandler = (jump: number) => {
-		router.push(`/pokemon/${props.id + jump}`);
+		if (props.id + jump <= 0) router.push(`/pokemon/${1010}`);
+		else if (props.id + jump >= 1010) router.push(`/pokemon/${1}`);
+		else router.push(`/pokemon/${props.id + jump}`);
 	};
 
 	const teamAdditionHandler = () => {
@@ -28,8 +30,8 @@ const Pokemon: React.FC<Props> = (props) => {
 	};
 
 	const keypressHandler = (event: any) => {
-		if (event.keyCode === 37) router.push(`/pokemon/${props.id - 1}`);
-		else if (event.keyCode === 39) router.push(`/pokemon/${props.id + 1}`);
+		if (event.keyCode === 37) navigationHandler(-1);
+		else if (event.keyCode === 39) navigationHandler(1);
 	};
 
 	useEffect(() => {
