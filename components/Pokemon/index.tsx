@@ -17,6 +17,8 @@ type Props = {
 const Pokemon: React.FC<Props> = (props) => {
 	const { addToTeam } = useContext(TeamContext);
 	const [pokemon, setPokemon] = useState<Pokemon_type>();
+	const [statsToggle, setStatsToggle] = useState(false);
+
 	const router = useRouter();
 
 	const navigationHandler = (jump: number) => {
@@ -32,6 +34,10 @@ const Pokemon: React.FC<Props> = (props) => {
 	const keypressHandler = (event: any) => {
 		if (event.keyCode === 37) navigationHandler(-1);
 		else if (event.keyCode === 39) navigationHandler(1);
+	};
+
+	const statsToggleHandler = () => {
+		setStatsToggle((state) => !state);
 	};
 
 	useEffect(() => {
@@ -57,21 +63,45 @@ const Pokemon: React.FC<Props> = (props) => {
 			<p className={`${styles.error}`}>{pokemon.error}</p>
 		) : (
 			<>
-				<Image
-					src={pokemon.image}
-					alt={pokemon.name}
-					width={200}
-					height={200}
-					className={`${styles.image}`}
-					unoptimized
-				/>
-				<h2 className={`${styles.name}`}>
-					{pokemon.name}
-					<span className={`${styles.id}`}> #{pokemon.id}</span>
-				</h2>
-				<Types types={pokemon.types} />
-				<Abilities abilities={pokemon.abilities} />
-				<Stats stats={pokemon.stats} />
+				<div
+					className={`${styles.pokemonHeaderGrid} ${
+						statsToggle && styles.slide
+					}`}
+				>
+					<Stats stats={pokemon.stats} />
+					<div className={`${styles.infoHeader}`}>
+						<Image
+							src={pokemon.image}
+							alt={pokemon.name}
+							width={200}
+							height={200}
+							className={`${styles.image}`}
+							unoptimized
+						/>
+						<h2 className={`${styles.name}`}>
+							{pokemon.name}
+							<span className={`${styles.id}`}> #{pokemon.id}</span>
+						</h2>
+						<Types types={pokemon.types} />
+						<Abilities abilities={pokemon.abilities} />
+					</div>
+				</div>
+				<p onClick={statsToggleHandler} className={`${styles.toggle}`}>
+					<button className={`${styles.toggleText}`}>View Base Stats</button>
+					<svg
+						width='41'
+						height='25'
+						viewBox='0 0 41 25'
+						fill='none'
+						xmlns='http://www.w3.org/2000/svg'
+						className={`${styles.toggleIcon} ${statsToggle && styles.rotate}`}
+					>
+						<path
+							d='M40.9021 0.117645L20.9021 24.1176L0.9021 0.117645H40.9021Z'
+							fill='white'
+						/>
+					</svg>
+				</p>
 				<Button onClick={teamAdditionHandler} className={`${styles.button}`}>
 					Add to Team
 				</Button>

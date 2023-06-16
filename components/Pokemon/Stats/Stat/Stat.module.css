@@ -3,6 +3,7 @@
 	--value-width: 3rem;
 	--bar-max-width: calc(100% - 8rem);
 	width: 100%;
+	margin: 1rem 0;
 	position: relative;
 	display: grid;
 	grid-auto-rows: 2rem;
