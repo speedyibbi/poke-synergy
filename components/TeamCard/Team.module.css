@@ -56,7 +56,7 @@
 
 @media screen and (min-width: 60rem) {
 	.teamCard {
-		width: min(50%, 35rem);
+		width: min(50%, 40rem);
 		margin: 1rem;
 		padding: 2rem;
 		position: relative;
@@ -71,7 +71,7 @@
 	}
 
 	.teamMember {
-		width: 5rem;
+		width: 6rem;
 		padding: 0.5rem;
 	}
 

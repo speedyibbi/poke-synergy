@@ -42,6 +42,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
 			species.egg_groups = species.egg_groups.map((group: any) => group.name);
 			species.generation = species.generation.name;
 			species.growth_rate = species.growth_rate.name;
+			species.image = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${species.id}.png`;
 			if (species.evolves_from_species !== null) {
 				delete species.evolves_from_species.url;
 				species.evolves_from_species.id = array.find(

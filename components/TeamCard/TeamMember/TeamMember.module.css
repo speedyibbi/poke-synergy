@@ -59,3 +59,10 @@
 		scale: 0;
 	}
 }
+
+@media screen and (min-width: 60rem) {
+	.pokemon,
+	.plus {
+		height: 5rem;
+	}
+}
