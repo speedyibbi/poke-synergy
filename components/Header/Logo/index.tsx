@@ -13,6 +13,7 @@ const Logo: React.FC<Props> = (props) => {
 				alt='logo'
 				width={140}
 				height={116}
+				priority
 				onClick={() => {
 					props.onClick && props.onClick();
 				}}

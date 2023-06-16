@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Pokemon_type from '../../Pokemon/type';
 import styles from './TeamMember.module.css';
 
@@ -12,9 +13,12 @@ const TeamMember: React.FC<Props> = (props) => {
 		<>
 			{props.pokemon && !('error' in props.pokemon) ? (
 				<div className={`${styles.container}`}>
-					<img
+					<Image
 						src={props.pokemon.image}
 						alt={props.pokemon.name}
+						width={100}
+						height={100}
+						unoptimized
 						onMouseDown={() => {
 							props.onMouseDown();
 						}}

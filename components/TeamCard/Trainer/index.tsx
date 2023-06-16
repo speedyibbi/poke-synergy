@@ -9,6 +9,7 @@ const Trainer = () => {
 			width={190}
 			height={270}
 			className={`${styles.trainer}`}
+			priority
 		/>
 	);
 };
