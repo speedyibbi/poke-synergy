@@ -2,31 +2,31 @@
 	--border-color: var(--primary);
 	--selected-color: var(--selection);
 	--drop-shadow: var(--card-item-drop-shadow);
-	width: min(50%, 35rem);
-	margin: 1rem;
-	padding: 2rem;
-	position: relative;
-	display: none;
+	margin: 0.5rem 0;
+	padding: 0.75rem;
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	display: flex;
 	justify-content: center;
 	align-items: center;
 	border-radius: 0.6rem;
 	background-color: var(--card-bg-color);
 	backdrop-filter: var(--primary-blur);
+	transform: translate(-50%, 0%);
 	filter: var(--card-drop-shadow);
+	overflow: none;
 }
 
 .team {
 	display: flex;
-	gap: 2rem;
-	flex-wrap: wrap;
 	justify-content: center;
 	align-items: flex-end;
 	list-style: none;
 }
 
 .teamMember {
-	width: 5rem;
-	padding: 0.5rem;
+	width: 3.3rem;
 	cursor: pointer;
 	text-align: center;
 	border-bottom: 2px solid var(--border-color);
@@ -43,7 +43,7 @@
 	position: absolute;
 	top: 0rem;
 	right: 0rem;
-	display: flex;
+	display: none;
 	justify-content: center;
 	align-items: center;
 	color: var(--tertiary);
@@ -56,6 +56,26 @@
 
 @media screen and (min-width: 60rem) {
 	.teamCard {
+		width: min(50%, 35rem);
+		margin: 1rem;
+		padding: 2rem;
+		position: relative;
+		top: 0;
+		left: 0;
+		transform: none;
+	}
+
+	.team {
+		gap: 2rem;
+		flex-wrap: wrap;
+	}
+
+	.teamMember {
+		width: 5rem;
+		padding: 0.5rem;
+	}
+
+	.counter {
 		display: flex;
 	}
 }
