@@ -63,6 +63,7 @@ a {
 	min-height: 100vh;
 	margin: auto;
 	padding: 1.5% 7%;
+	position: relative;
 }
 
 @media screen and (min-width: 60rem) {

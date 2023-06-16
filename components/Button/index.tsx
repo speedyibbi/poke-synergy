@@ -2,8 +2,8 @@ import styles from './Button.module.css';
 
 type Props = {
 	mini?: boolean;
-	className?: string;
 	onClick?: Function;
+	className?: string;
 	children?: React.ReactNode;
 };
 

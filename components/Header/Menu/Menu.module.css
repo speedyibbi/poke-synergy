@@ -1,0 +1,21 @@
+.menu {
+	display: block;
+	border: none;
+	background-color: transparent;
+}
+
+.toggle {
+	width: 2rem;
+	height: 1.5rem;
+	filter: drop-shadow(0 0 0.1rem white);
+}
+
+@media screen and (min-width: 60rem) {
+	.toggle {
+		display: none;
+	}
+}
+
+.hidden {
+	display: none;
+}

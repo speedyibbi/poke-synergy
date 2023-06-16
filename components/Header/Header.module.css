@@ -5,33 +5,7 @@
 	align-items: center;
 }
 
-.logo {
-	width: 5rem;
-	height: 4.5rem;
-	margin: 1rem 0;
-	cursor: pointer;
-}
-
 .buttons {
-	display: none;
-	gap: 2rem;
-	justify-content: center;
-	align-items: center;
-}
-
-.toggle {
-	display: block;
-	border: none;
-	background-color: transparent;
-}
-
-.menu {
-	width: 2rem;
-	height: 1.5rem;
-	filter: drop-shadow(0 0 0.1rem white);
-}
-
-.toggledButtons {
 	width: 100%;
 	height: 0;
 	display: flex;
@@ -40,6 +14,10 @@
 	align-items: center;
 	overflow: hidden;
 	transition: var(--primary-transition);
+}
+
+.buttons * {
+	padding: 0.5rem 1rem;
 }
 
 .hidden {
@@ -52,10 +30,12 @@
 
 @media screen and (min-width: 60rem) {
 	.buttons {
-		display: flex;
+		width: auto;
+		height: auto;
+		gap: 2rem;
 	}
 
-	.toggle {
-		display: none;
+	.buttons * {
+		padding: 0.5rem 2.25rem;
 	}
 }

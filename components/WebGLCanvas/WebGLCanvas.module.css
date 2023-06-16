@@ -1,15 +1,10 @@
 .webGLCanvas {
-	width: min(100%, 600rem);
+	width: 100%;
 	height: 100%;
 	position: absolute;
 	top: 0;
-	right: 0;
+	left: 0;
 	transition: var(--primary-transition);
-	/* filter: var(--primary-blur); */
 	background-color: var(--card-bg-color);
 	z-index: -1;
-}
-
-.fullWidth {
-	width: 100%;
 }
